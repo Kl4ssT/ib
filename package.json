@@ -1,0 +1,19 @@
+{
+  "name": "ib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kl4ssT/ib.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kl4ssT/ib/issues"
+  },
+  "homepage": "https://github.com/Kl4ssT/ib#readme"
+}

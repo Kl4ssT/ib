@@ -1,45 +1,61 @@
+const emptyValue = '*';
+const space = ' ';
+const underLine = '_';
+
 class Skitala
 {
 
     constructor(string, size)
     {
         this.string = string.split('');
-        this.size = size;
+        this.size = [size, Math.trunc((this.string.length - 1)/size) + 1];
     }
 
     encrypt()
     {
-        const result = [];
-        const arr = [];
-
-        for(let i = 0; i < this.size[1]; i++) {
+        const matrix = [];
+        for(let i = 0; i < this.size[0]; i++) {
             const row = [];
-            for(let j = 0; j < this.size[0]; j++) {
-                if (this.string.length == 0) {
-                    row.push('*');
-                }
-                else {
-                    row.push(this.string.splice(0, 1)[0]);
-                }
+            for(let j = 0; j < this.size[1]; j++) {
+                if(this.string.length == 0)
+                    row.push(emptyValue);
+                else
+                    row.push(this.string.shift());
             }
-
-            arr.push(row);
+            matrix.push(row);
         }
 
-        console.log(arr);
-
+        let result = '';
         for(let i = 0; i < this.size[1]; i++) {
             for(let j = 0; j < this.size[0]; j++) {
-                result.push(arr[j][i]);
+                result += matrix[j][i];
             }
         }
 
-        return result.join('');
+        return result;
     }
 
     decrypt()
     {
-        return this.deleteStars(this.encrypt());
+        const matrix = [];
+        for(let i = 0; i < this.size[1]; i++) {
+            const row = [];
+            for(let j = 0; j < this.size[0]; j++) {
+                row.push(this.string.shift());
+            }
+            matrix.push(row);
+        }
+
+        console.log(matrix);
+
+        let result = '';
+        for(let i = 0; i < this.size[0]; i++) {
+            for(let j = 0; j < this.size[1]; j++) {
+                result += matrix[j][i];
+            }
+        }
+
+        return this.deleteStars(result);
     }
 
     deleteStars(string)
